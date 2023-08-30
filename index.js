@@ -2,11 +2,18 @@ const btnAnterior = document.getElementById(btnAnterior);
 const btnSiguiente = document.getElementById(btnSiguiente);
 let pagina = 1;
 
+btnAnterior.addEventListener("click", ()=>{
+    if(pagina > 1) {
+        pagina -= 1;
+        cargarPeliculas();
+    }
+})
+
 const cargarPeliculas = async()=>{
 
     try{
 
-        const respuesta = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=191528030c357419329af1198edbcb24&language=es-MX&page=1`)
+        const respuesta = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=191528030c357419329af1198edbcb24&language=es-MX&page=${`pagina`}`);
         console.log(respuesta);
 
         if(respuesta.status === 200){
